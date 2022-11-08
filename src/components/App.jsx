@@ -14,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchContacts());
-  }, []);
+  }, [dispatch]);
 
   const handleOnSubmit = ({ name,number }) => {
 
@@ -37,9 +37,11 @@ const App = () => {
     dispatch(setFilterAction(valueToLowerCase))
   }
 
-  const removeContact = (id) =>{
+  const removeContact = useCallback((id) =>{
       dispatch(deleteContact(id))
-  }
+  },
+    [dispatch]
+  )
 
 
     return (
